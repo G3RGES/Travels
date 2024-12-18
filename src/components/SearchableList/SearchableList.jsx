@@ -12,6 +12,12 @@ const SearchableList = ({ items, itemKeyFn, children }) => {
   );
 
   function handleChange(event) {
+    if (lastChange.current) {
+      lastChange.current = null;
+
+      clearTimeout(lastChange.current);
+    }
+
     lastChange.current = setTimeout(() => {
       setSearchTerm(event.target.value);
     }, 1000);
